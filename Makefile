@@ -8,8 +8,7 @@ LIBS=$(shell pwd)/../third_party/FLAP/shared/libflap.so
 
 CFLAGS=-O3 -fopenmp -llapack -lblas -lfftw3 -fPIC -g -fcheck=all -fbacktrace -ffpe-trap=invalid,underflow,inexact,denormal
 
-all:
-	cd extrema && make objects
+all: types.o extrema/extrema_types.o extrema/extrema_storage.o extrema/extrema_mod.o
 
 extrema.pyf: extrema.f90
 	$(F2PY) -h $@  --overwrite-signature -m $(basename $@) $^ skip: extrema_compute_ext : \

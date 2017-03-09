@@ -14,14 +14,14 @@ F90SRC = ['extrema/extrema_mod.f90',
 F90OBJ = [e.replace(".f90", ".o") for e in F90SRC]
 
 
-F2PYOPTS = ['only:', 'extrema_compute', 'extrema_set', ":"]
+F2PYOPTS = ['only:', 'compute', 'set', ":"]
 
 SOURCES = ['extrema.f90']
 
 
 def compile_ext():
-    import sh
-    sh.make()
+    import subprocess
+    subprocess.call('make')
 
 
 def compile():
@@ -30,7 +30,30 @@ def compile():
                         extra_f90_compile_args=F90CFLAGS,
                         f2py_options=F2PYOPTS,
                         extra_link_args=F90LFLAGS+F90OBJ)
+    with open('Readme.md') as f:
+        readme = f.read()
+
+    with open('LICENSE') as f:
+        license = f.read()
+
     setup(
+        name='extrema',
+        version='0.1.0',
+        description='Local extrema and critical point finder.',
+        long_description=readme,
+        classifiers=[
+            'Development status :: 1 - Alpha',
+            'License :: CC-By-SA2.0',
+            'Programming Language :: Python',
+            'Topic :: geometry :: analysis :: critical points'
+        ],
+        author='Corentin Cadiou',
+        author_email='corentin.cadiou@cphyc.me',
+        url='https://github.com/cphyc/extrema',
+        license=license,
+        install_requires=[
+            'numpy',
+        ],
         ext_modules=[wrapper]
     )
 
