@@ -10,7 +10,7 @@ Requires:
 * LAPACK
 * FFTW3 (will be removed eventually)
 * numpy
-* python (of course!)
+* python 2 or 3 (of course!)
 * gfortran (for other compilers, see below)
 
 If you're using ifort or other, you have to clone this repository and modify the Makefile accordingly.
