@@ -46,13 +46,13 @@ data = dict(
      pos=extrema.peak_pos,     # pos of the critical point
      val=extrema.peak_values,  # value at the point
      eigval=extrema.eigval,    # eigen values of the hessian
-     eigvec=extrema.eigvect,   # eigen vectors of the hessian
-     type=extrema.peak_types   # type of the extrema (4: maximum, 3,2:saddle point, 1:minimum)
+     eigvec=extrema.eigvec,    # eigen vectors of the hessian
+     type=extrema.peak_types,  # type of the extrema (4: maximum, 3,2:saddle point, 1:minimum)
      index=extrema.peak_index  # unravelled index of the cell containing the critical point
 )
 
 # Unravel indices
-indices = np.unraval_index(data['index'], field.shape)
+indices = np.unravel_index(data['index'], field.shape, order='F')
 ```
 
 
