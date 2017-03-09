@@ -48,7 +48,6 @@ contains
     ! flatten the field
     flattened_field = reshape(real(field), (/size(field)/))
 
-    print*, 'in extrema_compute_ext', shape(field), shape(ext)
     ! get the extrema
     call find_extrema(flattened_field, nn=nn, ext=ext, nd=ndim, ctrl=ctrl)
 
